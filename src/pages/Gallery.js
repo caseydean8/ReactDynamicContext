@@ -4,6 +4,8 @@ import CardContainer from "../components/CardContainer";
 import Row from "../components/Row";
 import ContextAPI from "../utils/ContextAPI";
 
+// const ContextAPI = React.createContext();
+
 class Gallery extends Component {
   constructor(props) {
     super(props);
@@ -14,21 +16,21 @@ class Gallery extends Component {
       userIndex: 0,
       // name: ""
       // BEWARE this binding!!! arrow function doesn't work below
-      capFirst: function(first = "", last = "") {
-        // let fullName = [string, last];
-        // fullName.forEach(name => {
-        //   let cap = name.charAt(0) + name.slice(1);
-        //   return cap
-        // })
+      capFirst: function (first = "", last = "") {
         let a = first.charAt(0).toUpperCase() + first.slice(1);
         let b = last.charAt(0).toUpperCase() + last.slice(1);
         console.log(a + " " + b);
         return a + " " + b;
-        // console.log(string);
-        // this.capitalizeFirstLetter(
-        //   this.state.user.firstname,
-        //   this.state.user.lastname
-        // )
+      },
+      handleBtnClick: (event) => {
+        const btnName = event.target.getAttribute("data-value");
+        if (btnName === "next") {
+          const userIndex = this.state.userIndex + 1;
+          this.nextUser(userIndex);
+        } else {
+          const userIndex = this.state.userIndex - 1;
+          this.previousUser(userIndex);
+        }
       },
     };
   }
@@ -38,7 +40,7 @@ class Gallery extends Component {
     this.loadUsers();
     // this.state.capFirst();
   }
-// Moved to state object
+  // Moved to state object
   // capitalizeFirstLetter(string = "", last = "") {
   //   console.log(string, last);
   //   let a = string.charAt(0).toUpperCase() + string.slice(1);
@@ -69,17 +71,17 @@ class Gallery extends Component {
     });
   }
 
-  handleBtnClick = (event) => {
-    // Get the title of the clicked button
-    const btnName = event.target.getAttribute("data-value");
-    if (btnName === "next") {
-      const userIndex = this.state.userIndex + 1;
-      this.nextUser(userIndex);
-    } else {
-      const userIndex = this.state.userIndex - 1;
-      this.previousUser(userIndex);
-    }
-  };
+  // handleBtnClick = (event) => {
+  //   // Get the title of the clicked button
+  //   const btnName = event.target.getAttribute("data-value");
+  //   if (btnName === "next") {
+  //     const userIndex = this.state.userIndex + 1;
+  //     this.nextUser(userIndex);
+  //   } else {
+  //     const userIndex = this.state.userIndex - 1;
+  //     this.previousUser(userIndex);
+  //   }
+  // };
 
   loadUsers = () => {
     API.getLanguagesList()
@@ -109,10 +111,10 @@ class Gallery extends Component {
               //   " " +
               //   this.state.capFirst(this.state.user.lastname)
               // }
-              image={this.state.user.image}
+              // image={this.state.user.image}
               // language={this.state.user.language}
               // email={this.state.user.email}
-              handleBtnClick={this.handleBtnClick}
+              // handleBtnClick={this.handleBtnClick}
             />
           </ContextAPI.Provider>
         </Row>

@@ -5,16 +5,16 @@ import ContextAPI from "../../utils/ContextAPI";
 function CardBtn(props) {
   console.log("props in CardBtn", props);
   return (
-    <ContextAPI>
+    <ContextAPI.Consumer>
       {(context) => (
         <button
           style={{ opacity: context.user.image ? 1 : 0 }}
-          onClick={props.onClick}
+          onClick={context.handleBtnClick}
           className={`card-btn ${props["data-value"]}`}
           {...props}
         />
       )}
-    </ContextAPI>
+    </ContextAPI.Consumer>
   );
 }
 

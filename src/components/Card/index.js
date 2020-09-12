@@ -5,14 +5,14 @@ import CardImg from "../CardImage";
 import CardHeading from "../CardHeading";
 import "./style.css";
 
-function Card(props) {
+function Card() {
   return (
     <div>
       <CardHeading />
       <CardImg />
       <CardBody />
-      <CardBtn onClick={props.handleBtnClick} data-value="back" />
-      <CardBtn onClick={props.handleBtnClick} data-value="next" />
+      <CardBtn data-value="back" />
+      <CardBtn data-value="next" />
     </div>
   );
 }

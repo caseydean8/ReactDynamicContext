@@ -5,7 +5,8 @@ const ContextAPI = React.createContext({
   user: {},
   users: [],
   userIndex: 0,
-  capFirst: () => undefined
+  capFirst: () => undefined,
+  handleBtnClick: () => undefined
 });
 
 export default ContextAPI;
