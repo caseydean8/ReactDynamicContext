@@ -1,7 +1,15 @@
 import React from "react";
+import ContextAPI from "../../utils/ContextAPI";
 
-function CardTitleText(props) {
-  return <h2>{props.title}</h2>;
+
+function CardTitleText() {
+  return (
+    <ContextAPI.Consumer>
+      {context => (
+         <h2>{context.capFirst(context.user.firstname, context.user.lastname)}</h2>
+      )}
+    </ContextAPI.Consumer>
+  );
 }
 
 export default CardTitleText;
