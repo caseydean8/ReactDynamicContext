@@ -16,22 +16,24 @@ class Gallery extends Component {
       userIndex: 0,
       // name: ""
       // BEWARE this binding!!! arrow function doesn't work below
-      capFirst: function (first = "", last = "") {
-        let a = first.charAt(0).toUpperCase() + first.slice(1);
-        let b = last.charAt(0).toUpperCase() + last.slice(1);
-        console.log(a + " " + b);
-        return a + " " + b;
-      },
-      handleBtnClick: (event) => {
-        const btnName = event.target.getAttribute("data-value");
-        if (btnName === "next") {
-          const userIndex = this.state.userIndex + 1;
-          this.nextUser(userIndex);
-        } else {
-          const userIndex = this.state.userIndex - 1;
-          this.previousUser(userIndex);
-        }
-      },
+      capFirst: this.capitalizeFirstLetter,
+      // function (first = "", last = "") {
+      //   let a = first.charAt(0).toUpperCase() + first.slice(1);
+      //   let b = last.charAt(0).toUpperCase() + last.slice(1);
+      //   console.log(a + " " + b);
+      //   return a + " " + b;
+      // },
+      handleBtnClick: this.handleBtnClick
+      // (event) => {
+      //   const btnName = event.target.getAttribute("data-value");
+      //   if (btnName === "next") {
+      //     const userIndex = this.state.userIndex + 1;
+      //     this.nextUser(userIndex);
+      //   } else {
+      //     const userIndex = this.state.userIndex - 1;
+      //     this.previousUser(userIndex);
+      //   }
+      // },
     };
   }
 
@@ -41,13 +43,13 @@ class Gallery extends Component {
     // this.state.capFirst();
   }
   // Moved to state object
-  // capitalizeFirstLetter(string = "", last = "") {
-  //   console.log(string, last);
-  //   let a = string.charAt(0).toUpperCase() + string.slice(1);
-  //   let b = last.charAt(0).toUpperCase() + last.slice(1);
-  //   console.log(a + " " + b);
-  //   return a + " " + b;
-  // }
+  capitalizeFirstLetter(string = "", last = "") {
+    console.log(string, last);
+    let a = string.charAt(0).toUpperCase() + string.slice(1);
+    let b = last.charAt(0).toUpperCase() + last.slice(1);
+    console.log(a + " " + b);
+    return a + " " + b;
+  }
 
   nextUser(userIndex) {
     // Ensure that the user index stays within our range of users
@@ -71,17 +73,17 @@ class Gallery extends Component {
     });
   }
 
-  // handleBtnClick = (event) => {
-  //   // Get the title of the clicked button
-  //   const btnName = event.target.getAttribute("data-value");
-  //   if (btnName === "next") {
-  //     const userIndex = this.state.userIndex + 1;
-  //     this.nextUser(userIndex);
-  //   } else {
-  //     const userIndex = this.state.userIndex - 1;
-  //     this.previousUser(userIndex);
-  //   }
-  // };
+  handleBtnClick = (event) => {
+    // Get the title of the clicked button
+    const btnName = event.target.getAttribute("data-value");
+    if (btnName === "next") {
+      const userIndex = this.state.userIndex + 1;
+      this.nextUser(userIndex);
+    } else {
+      const userIndex = this.state.userIndex - 1;
+      this.previousUser(userIndex);
+    }
+  };
 
   loadUsers = () => {
     API.getLanguagesList()
