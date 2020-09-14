@@ -3,7 +3,7 @@ import "./style.css";
 import ContextAPI from "../../utils/ContextAPI";
 
 function CardBtn(props) {
-  console.log("props in CardBtn", props);
+  console.log("context in CardBtn", ContextAPI);
   return (
     <ContextAPI.Consumer>
       {(context) => (
